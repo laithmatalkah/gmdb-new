@@ -2,12 +2,22 @@ package com.galvanize.gmdb.gmdb;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GmdbApplicationTests {
+
+
+	MovieService movieServiceMock = Mockito.mock(MovieService.class);
 
 	// Stories for this project are shown below in order of value, with the highest value listed first.
     // This microservice will contain the CRUD operations required to interact with the GMDB movie database.
@@ -56,8 +66,36 @@ public class GmdbApplicationTests {
     //    I can impersonate a reviewer and do any of the things they can do
     //    so that I can help confused reviewers.
 
+
+	// 1. As a user
+	//    I can GET a list of movies from GMDB that includes Movie ID | Movie Title | Year Released | Genre | Runtime
+	//    so that I can see the list of available movies.
 	@Test
-	public void contextLoads() {
+	public void testGetMovies() {
+
+		// setup
+		List<Movie> expected = new ArrayList<Movie>() {{
+			add(new Movie( 1L,"Test Title1",1986,"Test Genre1", 2.0));
+			add(new Movie( 2L,"Test Title2",1987,"Test Genre2", 2.0));
+			add(new Movie( 3L,"Test Title3",1988,"Test Genre3", 2.0));
+			add(new Movie( 4L,"Test Title4",1989,"Test Genre4", 2.0));
+			add(new Movie( 5L,"Test Title5",1990,"Test Genre5", 2.0));
+		}};
+
+		MovieController movieController = new MovieController(movieServiceMock);
+
+		when(movieServiceMock.getMovies()).thenReturn(expected);
+
+		// exercise
+
+		List<Movie> actual = movieController.getMovies();
+
+		// assert
+
+		assertEquals(expected, actual);
+
+
+
 	}
 
 }

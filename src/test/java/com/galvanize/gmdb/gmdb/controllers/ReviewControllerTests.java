@@ -75,10 +75,10 @@ public class ReviewControllerTests {
 
         ReviewController reviewController = new ReviewController(this.reviewServiceMock);
 
-        reviewController.deleteReview(this.review);
+        reviewController.deleteReview(1L);
 
         // verify(dependency, times(1)).yourMethod()
-        verify(this.reviewServiceMock, times(1)).deleteReview(this.review);
+        verify(this.reviewServiceMock, times(1)).deleteReview(1L);
 
 
     }

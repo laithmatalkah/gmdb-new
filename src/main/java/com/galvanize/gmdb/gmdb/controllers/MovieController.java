@@ -4,10 +4,12 @@ import com.galvanize.gmdb.gmdb.model.Movie;
 import com.galvanize.gmdb.gmdb.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/movie")
 public class MovieController {
 
     private final MovieService movieService;
@@ -17,31 +19,34 @@ public class MovieController {
         this.movieService = movieService;
     }
 
+    @RequestMapping(method= RequestMethod.GET,value="/movies")
     public List<Movie> getMovies() {
 
         List<Movie> movies = this.movieService.getMovies();
 
-
         return movies;
     }
 
-    public Movie getMovie(Long id) {
+    @RequestMapping(method= RequestMethod.GET,value="/movie/{id}")
+    public Movie getMovie(@PathVariable("id") Long id) {
 
         Movie movie = this.movieService.getMovie(id);
-
         return movie;
 
     }
 
-    public void addMovie(Movie movie) {
+    @RequestMapping(method= RequestMethod.POST,value="/add")
+    public void addMovie(@RequestBody Movie movie) {
         this.movieService.addMovie(movie);
     }
 
-    public void deleteMovie(Long id) {
+    @RequestMapping(method= RequestMethod.DELETE, value="/delete/{id}")
+    public void deleteMovie(@PathVariable("id") Long id) {
         this.movieService.deleteMovie(id);
     }
 
-    public void updateMovie(Movie movie) {
+    @RequestMapping(method= RequestMethod.PUT,value="/update")
+    public void updateMovie(@RequestBody Movie movie) {
         this.movieService.updateMovie(movie);
     }
 

@@ -28,6 +28,17 @@ public class Movie {
     @OneToMany(mappedBy = "movie", targetEntity = Review.class)
     private Collection reviews;
 
+    public Movie() {
+
+    }
+
+    public Movie(String title, String year, String genre, Long runtime) {
+        this.title = title;
+        this.year = year;
+        this.genre = genre;
+        this.runtime = runtime;
+    }
+
     public Movie(long movieId, String title, String year, String genre, Long runtime, Collection reviews) {
         this.movieId = movieId;
         this.title = title;

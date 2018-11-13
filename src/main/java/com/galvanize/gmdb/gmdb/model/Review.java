@@ -26,13 +26,26 @@ public class Review {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date lastModified;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "MOVIE_ID", referencedColumnName = "MOVIE_ID")
     private Movie movie;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "REVIEWER_ID", referencedColumnName = "REVIEWER_ID")
     private Reviewer reviewer;
+
+    public Review(){
+
+    }
+
+    public Review( String reviewText){
+        this.reviewText=reviewText;
+    }
+
+    public Review(Long id, String reviewText){
+        this.reviewId = id;
+        this.reviewText=reviewText;
+    }
 
     public Review(long reviewId, String reviewText, long movieId, long reviewerId, Date lastModified, Movie movie, Reviewer reviewer) {
         this.reviewId = reviewId;

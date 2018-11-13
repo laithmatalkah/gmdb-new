@@ -17,10 +17,10 @@ public class ReviewService {
     }
 
     public List<Review> getReviews() {
-        return (List)reviewRepository.findAll();
+        return (List) reviewRepository.findAll();
     }
 
-    public Review getReview(Long id){
+    public Review getReview(Long id) {
         return reviewRepository.findById(id).get();
     }
 

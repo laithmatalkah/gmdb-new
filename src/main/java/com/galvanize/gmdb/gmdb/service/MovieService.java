@@ -16,10 +16,10 @@ public class MovieService {
     }
 
     public List<Movie> getMovies() {
-        return (List)movieRepository.findAll();
+        return (List) movieRepository.findAll();
     }
 
-    public  Movie getMovie(Long id){
+    public Movie getMovie(Long id) {
         return movieRepository.findById(id).get();
     }
 

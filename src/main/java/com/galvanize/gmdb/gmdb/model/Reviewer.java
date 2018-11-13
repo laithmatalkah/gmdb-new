@@ -7,23 +7,23 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 
-@Entity(name="REVIEWERS")
+@Entity(name = "REVIEWERS")
 public class Reviewer {
     //Reviewer ID | Username | Date Joined | Number of Reviews
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="REVIEWER_ID")
+    @Column(name = "REVIEWER_ID")
     private long reviewerId;
 
-    @Column(name="USERNAME")
+    @Column(name = "USERNAME")
     private String userName;
 
-    @Column(columnDefinition = "date", name="DATE_JOINED")
+    @Column(columnDefinition = "date", name = "DATE_JOINED")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateJoined;
 
-    @OneToMany(mappedBy="reviewer",targetEntity=Review.class)
+    @OneToMany(mappedBy = "reviewer", targetEntity = Review.class)
     private Collection reviews;
 
     public Reviewer(long reviewerId, String userName, Date dateJoined, Collection reviews) {

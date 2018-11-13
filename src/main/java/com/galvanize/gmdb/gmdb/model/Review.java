@@ -5,33 +5,33 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name="REVIEWS")
+@Entity(name = "REVIEWS")
 public class Review {
-    //Review ID | Movie ID | Reviewer ID | Review Text | DateTime last modified
+    //ReviewController ID | Movie ID | Reviewer ID | ReviewController Text | DateTime last modified
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="REVIEW_ID")
+    @Column(name = "REVIEW_ID")
     private long reviewId;
 
-    @Column(name="REVIEW_TEXT")
+    @Column(name = "REVIEW_TEXT")
     private String reviewText;
 
-    @Column(name="MOVIE_ID",insertable = false,updatable = false)
+    @Column(name = "MOVIE_ID", insertable = false, updatable = false)
     private long movieId;
 
-    @Column(name="REVIEWER_ID",insertable = false,updatable = false)
+    @Column(name = "REVIEWER_ID", insertable = false, updatable = false)
     private long reviewerId;
 
-    @Column(columnDefinition = "date", name="LAST_MODIFIED")
+    @Column(columnDefinition = "date", name = "LAST_MODIFIED")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date lastModified;
 
     @ManyToOne
-    @JoinColumn(name="MOVIE_ID",referencedColumnName="MOVIE_ID")
+    @JoinColumn(name = "MOVIE_ID", referencedColumnName = "MOVIE_ID")
     private Movie movie;
 
     @ManyToOne
-    @JoinColumn(name="REVIEWER_ID",referencedColumnName="REVIEWER_ID")
+    @JoinColumn(name = "REVIEWER_ID", referencedColumnName = "REVIEWER_ID")
     private Reviewer reviewer;
 
     public Review(long reviewId, String reviewText, long movieId, long reviewerId, Date lastModified, Movie movie, Reviewer reviewer) {

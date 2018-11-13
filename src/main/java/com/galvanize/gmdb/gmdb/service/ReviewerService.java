@@ -17,10 +17,10 @@ public class ReviewerService {
     }
 
     public List<Reviewer> getReviewers() {
-        return (List)reviewerRepository.findAll();
+        return (List) reviewerRepository.findAll();
     }
 
-    public  Reviewer getReviewer(Long id){
+    public Reviewer getReviewer(Long id) {
         return reviewerRepository.findById(id).get();
     }
 

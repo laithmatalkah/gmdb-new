@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 
-@Entity(name="MOVIES")
+@Entity(name = "MOVIES")
 public class Movie {
     // Movie ID | Movie title | year Released | genre | runtime
 

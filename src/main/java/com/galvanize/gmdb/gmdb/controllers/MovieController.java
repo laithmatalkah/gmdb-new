@@ -1,4 +1,4 @@
-package com.galvanize.gmdb.gmdb;
+package com.galvanize.gmdb.gmdb.controllers;
 
 import com.galvanize.gmdb.gmdb.model.Movie;
 import com.galvanize.gmdb.gmdb.service.MovieService;
@@ -12,7 +12,7 @@ public class MovieController {
 
     private final MovieService movieService;
 
-    @Autowired
+
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
@@ -24,4 +24,18 @@ public class MovieController {
 
         return movies;
     }
+
+    public Movie getMovie(Long id) {
+
+        Movie movie = this.movieService.getMovie(id);
+
+        return movie;
+
+    }
+
+    public void addMovie(Movie movie) {
+        this.movieService.addMovie(movie);
+    }
+
+
 }

@@ -1,5 +1,10 @@
 package com.galvanize.gmdb.gmdb;
 
+import com.galvanize.gmdb.gmdb.model.Movie;
+import com.galvanize.gmdb.gmdb.service.MovieService;
+import org.hamcrest.collection.IsIterableContainingInOrder;
+import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -10,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -71,15 +77,16 @@ public class GmdbApplicationTests {
 	//    I can GET a list of movies from GMDB that includes Movie ID | Movie Title | Year Released | Genre | Runtime
 	//    so that I can see the list of available movies.
 	@Test
+
 	public void testGetMovies() {
 
 		// setup
 		List<Movie> expected = new ArrayList<Movie>() {{
-			add(new Movie( 1L,"Test Title1",1986,"Test Genre1", 2.0));
-			add(new Movie( 2L,"Test Title2",1987,"Test Genre2", 2.0));
-			add(new Movie( 3L,"Test Title3",1988,"Test Genre3", 2.0));
-			add(new Movie( 4L,"Test Title4",1989,"Test Genre4", 2.0));
-			add(new Movie( 5L,"Test Title5",1990,"Test Genre5", 2.0));
+			add(new Movie( 1L,"Test Title1","1986","Test Genre1", 2L, null));
+			add(new Movie( 2L,"Test Title2","1987","Test Genre2", 2L, null));
+			add(new Movie( 3L,"Test Title3","1988","Test Genre3", 2L, null));
+			add(new Movie( 4L,"Test Title4","1989","Test Genre4", 2L, null));
+			add(new Movie( 5L,"Test Title5","1990","Test Genre5", 2L, null));
 		}};
 
 		MovieController movieController = new MovieController(movieServiceMock);
@@ -92,7 +99,10 @@ public class GmdbApplicationTests {
 
 		// assert
 
-		assertEquals(expected, actual);
+		Assert.assertThat(actual,
+				IsIterableContainingInOrder.contains(expected.toArray()));
+		//assertEquals(expected, actual);
+		//assertTrue(true);
 
 
 

@@ -1,4 +1,4 @@
-package com.galvanize.gmdb.gmdb;
+package com.galvanize.gmdb.gmdb.controllers;
 
 import com.galvanize.gmdb.gmdb.controllers.MovieController;
 import com.galvanize.gmdb.gmdb.model.Movie;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class GmdbApplicationTests {
+public class MovieControllerTests {
 
 
 	MovieService movieServiceMock = Mockito.mock(MovieService.class);
@@ -143,6 +143,33 @@ public class GmdbApplicationTests {
 
 		// verify(dependency, times(1)).yourMethod()
 		verify(movieServiceMock, times(1)).addMovie(expected);
+	}
+
+	@Test
+	public void deleteMovieTest() {
+
+		//setup
+		MovieController movieController = new MovieController(movieServiceMock);
+
+		//exercise
+		movieController.deleteMovie(1L);
+
+		// verify(dependency, times(1)).yourMethod()
+		verify(movieServiceMock, times(1)).deleteMovie(1L);
+	}
+
+	@Test
+	public void updateMovieTest() {
+
+		//setup
+		Movie movie =new Movie(1L,"Test Title1","1986","Test Genre1", 2L, null);
+		MovieController movieController = new MovieController(movieServiceMock);
+
+		//exercise
+		movieController.updateMovie(movie);
+
+		// verify(dependency, times(1)).yourMethod()
+		verify(movieServiceMock, times(1)).updateMovie(movie);
 	}
 
 

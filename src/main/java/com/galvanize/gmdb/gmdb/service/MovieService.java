@@ -31,7 +31,7 @@ public class MovieService {
         this.movieRepository.save(movie);
     }
 
-    public void deleteMovie(Movie movie) {
-        this.movieRepository.delete(movie);
+    public void deleteMovie(Long id) {
+        this.movieRepository.deleteById(id);
     }
 }

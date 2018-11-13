@@ -36,6 +36,13 @@ public class MovieController {
     public void addMovie(Movie movie) {
         this.movieService.addMovie(movie);
     }
+    public void deleteMovie(Long id) {
+        this.movieService.deleteMovie(id);
+    }
+
+    public void updateMovie(Movie movie){
+        this.movieService.updateMovie(movie);
+    }
 
 
 }

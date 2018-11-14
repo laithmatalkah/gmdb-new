@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/movie/update").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/review/**").authenticated()
                 .antMatchers(HttpMethod.PUT, "/review/**").authenticated()
-                .antMatchers(HttpMethod.DELETE,"/review/**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/review/**").authenticated()
                 .antMatchers("/review/**").hasRole("REVIEWER")
                 .antMatchers("/review/**").hasRole("ADMIN")
                 //  .antMatchers("/admin/**").hasRole("ADMIN") <= Example to show how to check a role

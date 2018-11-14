@@ -23,8 +23,8 @@ public class ReviewerControllerTests {
     Reviewer reviewer;
 
     @Before
-
     public void setUp() throws Exception {
+
         reviewerServiceMock = Mockito.mock(ReviewerService.class);
 
         reviewer = new Reviewer(1L, "reviewerName1", new Date(), null);
@@ -53,9 +53,7 @@ public class ReviewerControllerTests {
         ReviewerController reviewerController = new ReviewerController(reviewerServiceMock);
         reviewerController.getReviewer(1L);
 
-
         when(reviewerServiceMock.getReviewer(1L)).thenReturn(reviewer);
-
 
         //exercise
         Reviewer actual = reviewerController.getReviewer(1L);

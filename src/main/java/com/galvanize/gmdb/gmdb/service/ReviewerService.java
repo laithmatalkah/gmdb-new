@@ -1,6 +1,5 @@
 package com.galvanize.gmdb.gmdb.service;
 
-import com.galvanize.gmdb.gmdb.model.Movie;
 import com.galvanize.gmdb.gmdb.model.Reviewer;
 import com.galvanize.gmdb.gmdb.repository.ReviewerRepository;
 import org.springframework.stereotype.Service;

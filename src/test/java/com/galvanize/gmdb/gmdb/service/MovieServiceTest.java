@@ -8,7 +8,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 public class MovieServiceTest {
@@ -19,7 +19,7 @@ public class MovieServiceTest {
     @Before
     public void setUp() throws Exception {
         movieRepository = Mockito.mock(MovieRepository.class);
-        movie= new Movie(1L,"Test Title1","1986","Test Genre1", 2L, null);
+        movie = new Movie(1L, "Test Title1", "1986", "Test Genre1", 2L, null);
     }
 
     @After

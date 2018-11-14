@@ -1,7 +1,6 @@
 package com.galvanize.gmdb.gmdb.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.galvanize.gmdb.gmdb.model.Review;
 
 import javax.persistence.*;
 import java.util.Collection;

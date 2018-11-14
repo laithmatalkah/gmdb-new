@@ -1,6 +1,5 @@
 package com.galvanize.gmdb.gmdb.controllers;
 
-import com.galvanize.gmdb.gmdb.controllers.MovieController;
 import com.galvanize.gmdb.gmdb.model.Movie;
 import com.galvanize.gmdb.gmdb.service.MovieService;
 import org.hamcrest.collection.IsIterableContainingInOrder;
@@ -15,20 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MovieControllerTests {
 
 
-	MovieService movieServiceMock = Mockito.mock(MovieService.class);
+    MovieService movieServiceMock = Mockito.mock(MovieService.class);
 
-	// Stories for this project are shown below in order of value, with the highest value listed first.
+    // Stories for this project are shown below in order of value, with the highest value listed first.
     // This microservice will contain the CRUD operations required to interact with the GMDB movie database.
     // Other functionality (e.g. user authentication) is hosted in other microservices.
     //
@@ -76,102 +71,98 @@ public class MovieControllerTests {
     //    so that I can help confused reviewers.
 
 
-	// 1. As a user
-	//    I can GET a list of movies from GMDB that includes Movie ID | Movie Title | Year Released | Genre | Runtime
-	//    so that I can see the list of available movies.
-	@Test
+    // 1. As a user
+    //    I can GET a list of movies from GMDB that includes Movie ID | Movie Title | Year Released | Genre | Runtime
+    //    so that I can see the list of available movies.
+    @Test
 
-	public void testGetMovies() {
+    public void testGetMovies() {
 
-		// setup
-		List<Movie> expected = new ArrayList<Movie>() {{
-			add(new Movie( 1L,"Test Title1","1986","Test Genre1", 2L, null));
-			add(new Movie( 2L,"Test Title2","1987","Test Genre2", 2L, null));
-			add(new Movie( 3L,"Test Title3","1988","Test Genre3", 2L, null));
-			add(new Movie( 4L,"Test Title4","1989","Test Genre4", 2L, null));
-			add(new Movie( 5L,"Test Title5","1990","Test Genre5", 2L, null));
-		}};
+        // setup
+        List<Movie> expected = new ArrayList<Movie>() {{
+            add(new Movie(1L, "Test Title1", "1986", "Test Genre1", 2L, null));
+            add(new Movie(2L, "Test Title2", "1987", "Test Genre2", 2L, null));
+            add(new Movie(3L, "Test Title3", "1988", "Test Genre3", 2L, null));
+            add(new Movie(4L, "Test Title4", "1989", "Test Genre4", 2L, null));
+            add(new Movie(5L, "Test Title5", "1990", "Test Genre5", 2L, null));
+        }};
 
-		MovieController movieController = new MovieController(movieServiceMock);
+        MovieController movieController = new MovieController(movieServiceMock);
 
-		when(movieServiceMock.getMovies()).thenReturn(expected);
+        when(movieServiceMock.getMovies()).thenReturn(expected);
 
-		// exercise
+        // exercise
 
-		List<Movie> actual = movieController.getMovies();
+        List<Movie> actual = movieController.getMovies();
 
-		// assert
+        // assert
 
-		Assert.assertThat(actual,
-				IsIterableContainingInOrder.contains(expected.toArray()));
-		//assertEquals(expected, actual);
-		//assertTrue(true);
-
-
-
-	}
-
-	@Test
-	public void getMovieTest(){
-
-		//setup
-		Movie expected= new Movie(1L,"Test Title1","1986","Test Genre1", 2L, null);
-
-		MovieController movieController = new MovieController(movieServiceMock);
-
-		when(movieServiceMock.getMovie(1L)).thenReturn(expected);
+        Assert.assertThat(actual,
+                IsIterableContainingInOrder.contains(expected.toArray()));
+        //assertEquals(expected, actual);
+        //assertTrue(true);
 
 
-		//exercise
-		Movie actual= movieController.getMovie(1L);
+    }
 
-		//assert
-		assertEquals(actual,expected);
+    @Test
+    public void getMovieTest() {
 
+        //setup
+        Movie expected = new Movie(1L, "Test Title1", "1986", "Test Genre1", 2L, null);
 
-	}
+        MovieController movieController = new MovieController(movieServiceMock);
 
-	@Test
-	public void addMovieTest() {
+        when(movieServiceMock.getMovie(1L)).thenReturn(expected);
 
-		//setup
-		Movie expected= new Movie(1L,"Test Title1","1986","Test Genre1", 2L, null);
-		MovieController movieController = new MovieController(movieServiceMock);
+        //exercise
+        Movie actual = movieController.getMovie(1L);
 
-		//exercise
-		movieController.addMovie(expected);
+        //assert
+        assertEquals(actual, expected);
 
-		// verify(dependency, times(1)).yourMethod()
-		verify(movieServiceMock, times(1)).addMovie(expected);
-	}
+    }
 
-	@Test
-	public void deleteMovieTest() {
+    @Test
+    public void addMovieTest() {
 
-		//setup
-		MovieController movieController = new MovieController(movieServiceMock);
+        //setup
+        Movie expected = new Movie(1L, "Test Title1", "1986", "Test Genre1", 2L, null);
+        MovieController movieController = new MovieController(movieServiceMock);
 
-		//exercise
-		movieController.deleteMovie(1L);
+        //exercise
+        movieController.addMovie(expected);
 
-		// verify(dependency, times(1)).yourMethod()
-		verify(movieServiceMock, times(1)).deleteMovie(1L);
-	}
+        // verify(dependency, times(1)).yourMethod()
+        verify(movieServiceMock, times(1)).addMovie(expected);
+    }
 
-	@Test
-	public void updateMovieTest() {
+    @Test
+    public void deleteMovieTest() {
 
-		//setup
-		Movie movie =new Movie(1L,"Test Title1","1986","Test Genre1", 2L, null);
-		MovieController movieController = new MovieController(movieServiceMock);
+        //setup
+        MovieController movieController = new MovieController(movieServiceMock);
 
-		//exercise
-		movieController.updateMovie(movie);
+        //exercise
+        movieController.deleteMovie(1L);
 
-		// verify(dependency, times(1)).yourMethod()
-		verify(movieServiceMock, times(1)).updateMovie(movie);
-	}
+        // verify(dependency, times(1)).yourMethod()
+        verify(movieServiceMock, times(1)).deleteMovie(1L);
+    }
 
+    @Test
+    public void updateMovieTest() {
+
+        //setup
+        Movie movie = new Movie(1L, "Test Title1", "1986", "Test Genre1", 2L, null);
+        MovieController movieController = new MovieController(movieServiceMock);
+
+        //exercise
+        movieController.updateMovie(movie);
+
+        // verify(dependency, times(1)).yourMethod()
+        verify(movieServiceMock, times(1)).updateMovie(movie);
+    }
 
 
 }

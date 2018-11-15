@@ -3,11 +3,14 @@ package com.galvanize.gmdb.gmdb;
 import com.galvanize.gmdb.gmdb.exception.UserAlreadyExistsException;
 import com.galvanize.gmdb.gmdb.model.UserDto;
 import com.galvanize.gmdb.gmdb.service.UserDetailsService;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class GmdbApplication {
@@ -51,4 +54,5 @@ public class GmdbApplication {
         }
 
     }
+
 }

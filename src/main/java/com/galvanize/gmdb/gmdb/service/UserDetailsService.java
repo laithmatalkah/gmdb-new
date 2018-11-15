@@ -5,6 +5,8 @@ import com.galvanize.gmdb.gmdb.exception.UserAlreadyExistsException;
 import com.galvanize.gmdb.gmdb.model.User;
 import com.galvanize.gmdb.gmdb.model.UserDto;
 import com.galvanize.gmdb.gmdb.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class UserDetailsService implements IUserService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserDetailsService.class.getName());
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -25,7 +29,8 @@ public class UserDetailsService implements IUserService {
     public User registerNewUserAccount(final UserDto accountDto) throws UserAlreadyExistsException {
 
         if (emailExists(accountDto.getEmail())) {
-            throw new UserAlreadyExistsException("User already exists.");
+            logger.error("User already exists...no user(s) added.");
+            return null;
         }
 
         final User user = new User();

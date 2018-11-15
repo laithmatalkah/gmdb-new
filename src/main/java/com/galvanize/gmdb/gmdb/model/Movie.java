@@ -96,4 +96,10 @@ public class Movie {
         this.reviews = reviews;
     }
 
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "title='" + title + '\'' +
+                '}';
+    }
 }
